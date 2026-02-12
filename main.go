@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"log"
 	"os"
+
+	"github.com/wellitonscheer/analise-log-file/utils"
 )
 
 func main() {
@@ -17,7 +19,10 @@ func main() {
 	scanner := bufio.NewScanner(file)
 
 	for scanner.Scan() {
-		fmt.Println(scanner.Text() == string(scanner.Bytes()))
+		line := scanner.Text()
+		split := utils.SplitAtPipe(line)
+		fmt.Printf("\n%#+v\n", split)
+		break
 	}
 
 	if err = scanner.Err(); err != nil {
