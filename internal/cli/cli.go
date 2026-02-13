@@ -7,16 +7,27 @@ import (
 	"strings"
 )
 
+type Cli struct {
+	Input string
+}
+
+func NewCli() *Cli {
+	return &Cli{}
+}
+
 // Wait and return the input
-func Listen() (string, error) {
+func (c *Cli) Listen() error {
 	reader := bufio.NewReader(os.Stdin)
 
 	input, err := reader.ReadString('\n')
 	if err != nil {
-		return "", fmt.Errorf("failed to read input: %s", err)
+		return fmt.Errorf("failed to read input: %s", err)
 	}
 
-	input = strings.TrimSpace(input)
+	c.Input = strings.TrimSpace(input)
+	return nil
+}
 
-	return input, nil
+func (c *Cli) Parse() {
+
 }

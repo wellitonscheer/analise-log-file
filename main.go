@@ -11,12 +11,13 @@ import (
 )
 
 func main() {
-	input, err := cli.Listen()
+	c := cli.NewCli()
+	err := c.Listen()
 	if err != nil {
 		fmt.Println(err)
 	}
 
-	fmt.Printf("\n%#v\n", input)
+	fmt.Printf("\n%#v\n", c.Input)
 
 	file, err := os.Open("logs/EDLOGFILEREGISTROS_202602100903.txt")
 	if err != nil {
